@@ -84,6 +84,14 @@ class Controls {
             videoScreen.togglePause(this.playButton);
         }
     }
+
+    private activatePrevButton() {
+        this.controlsContainer.appendChild(this.prevButton);
+
+        this.prevButton.onclick = () => {
+            playList.prev();
+        }
+    }
 }
 
 export const controls = new Controls();
