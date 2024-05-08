@@ -25,6 +25,14 @@ class VideoNavigation {
     setDuration(seconds: number) {
         this.durationElement.textContent = timeFromSecondsToMinutesSeconds(seconds);
     }
+
+    updateCurrentTime(seconds: number) {
+        this.currentTimeElement.textContent = timeFromSecondsToMinutesSeconds(seconds);
+
+        const elapsedTimePercentage = (seconds / videoScreen.getVideoElement().duration) * 100 + "%";
+
+        this.elapsedTimeIndicator.style.width = elapsedTimePercentage;
+    }
 }
 
 export const videoNavigation = new VideoNavigation();
