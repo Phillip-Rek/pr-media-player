@@ -14,6 +14,23 @@ class PlayList {
     playList: Array<Track> = [];
 
 
+    getPlaylistElement() { return this.playlistElement }
+
+
+    play(song: Track) {
+        this.currentPlayingSong = song;
+        videoScreen.play(song);
+
+        for (let i = 0; i < this.playList.length; i++) {
+            const track = this.playList[i];
+            if (track === this.currentPlayingSong) {
+                (<HTMLElement>this.playlistElement.children.item(i)).className = "playlist-item selected";
+            }
+            else {
+                (<HTMLElement>this.playlistElement.children.item(i)).className = "playlist-item";
+            }
+        }
+    }
 }
 
 export const playList = new PlayList();
