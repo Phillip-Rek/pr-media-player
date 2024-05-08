@@ -13,6 +13,11 @@ class VideoScreen {
         this.initializeDropEvents();
 
 
+        this.videoElement.onended = () => {
+            controls.playButton.className = "fa fa-play";
+            playList.next();
+        }
+
         this.videoElement.onplay = () => {
             controls.playButton.className = "fa fa-pause";
 
