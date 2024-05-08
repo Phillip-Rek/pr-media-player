@@ -69,6 +69,22 @@ class PlayList {
     isFirst = (i: number) => i === 0 ? true : false;
     isLast = (i: number) => i === this.playList.length - 1 ? true : false;
 
+    add(song: { title: string, url: string, }): Track {
+        let trackNum = this.playList.length;
+        let track: Track = {
+            title: song.title,
+            url: song.url,
+            trackNumber: trackNum
+        }
+        this.playList.push(track);
+
+        // this.currentPlayingSong = track;
+
+        //modifying the DOM
+        this.addPlaylistItemToDOM(track);
+
+        return track;
+    }
 }
 
 export const playList = new PlayList();
