@@ -1,0 +1,9 @@
+#bottom-title-section {
+    background-color: rgb(32, 32, 32);
+    color: rgb(167, 167, 167);
+    min-height: 20px;
+    width: calc(100% - 4px);
+    border: 1px solid black;
+    margin: 1px;
+    text-justify: center;
+}
