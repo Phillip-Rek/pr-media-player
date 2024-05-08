@@ -14,6 +14,26 @@ class VideoNavigation {
     private videoNavigationCanvas = <HTMLCanvasElement>createHTMLElement("canvas", { id: "preview-video-canvas" });
 
 
+    constructor() {
+        this.videoNavigationContainer.appendChild(this.currentTimeElement);
+        this.videoNavigationElement.appendChild(this.elapsedTimeIndicator);
+        this.videoNavigationContainer.appendChild(this.videoNavigationElement);
+        this.videoNavigationContainer.appendChild(this.durationElement);
+
+        this.currentTimeElement.textContent = "00:00";
+        this.durationElement.textContent = "00:00";
+
+        document.body.appendChild(this.previewTimeElement);
+        document.body.appendChild(this.videoNavigationCanvas);
+        document.body.appendChild(this.videoNavigationVideoElement);
+
+        this.initMouseMoveEvent();
+        this.initClickEvent();
+
+        this.videoNavigationCanvas.width = 200;
+        this.videoNavigationCanvas.height = 150;
+    }
+
     getContainer() { return this.videoNavigationContainer }
 
     attachVideoNavigationToVideo(url: string) {
