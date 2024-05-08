@@ -21,6 +21,10 @@ class VideoNavigation {
         this.videoNavigationVideoElement.src = url;
         this.videoNavigationVideoElement.play();
     }
+
+    setDuration(seconds: number) {
+        this.durationElement.textContent = timeFromSecondsToMinutesSeconds(seconds);
+    }
 }
 
 export const videoNavigation = new VideoNavigation();
