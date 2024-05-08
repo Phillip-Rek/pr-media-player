@@ -113,6 +113,13 @@ class PlayList {
             this.updateTrackNumberInTheDOM();
         }
     }
+
+    private updateTrackNumberInTheDOM() {
+        for (let i = 0; i < this.playlistElement.children.length; i++) {
+            const playlistItem = this.playlistElement.children[i];
+            (<HTMLElement>playlistItem.children.item(0)).textContent = `${i + 1}. ${this.playList[i].title}`
+        }
+    }
 }
 
 export const playList = new PlayList();
