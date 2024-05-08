@@ -13,6 +13,14 @@ class VideoNavigation {
     private previewTimeElement = createHTMLElement("span", { id: "preview-time" });
     private videoNavigationCanvas = <HTMLCanvasElement>createHTMLElement("canvas", { id: "preview-video-canvas" });
 
+
+    getContainer() { return this.videoNavigationContainer }
+
+    attachVideoNavigationToVideo(url: string) {
+        this.videoNavigationVideoElement.muted = true;
+        this.videoNavigationVideoElement.src = url;
+        this.videoNavigationVideoElement.play();
+    }
 }
 
 export const videoNavigation = new VideoNavigation();
