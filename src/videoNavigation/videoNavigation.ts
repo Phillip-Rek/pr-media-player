@@ -70,6 +70,20 @@ class VideoNavigation {
         this.videoNavigationElement.onmouseenter = this.videoNavigationElement.onmousemove
     }
 
+
+    initClickEvent() {
+        this.videoNavigationElement.onclick = (e) => {
+            if (Number.isNaN(videoScreen.getVideoElement().duration)) return;
+
+            const { width, x } = this.videoNavigationElement.getBoundingClientRect();
+            const cursorPosition = (e.clientX - x) / width
+            const vid = videoScreen.getVideoElement();
+            const duration = vid.duration;
+            vid.currentTime = cursorPosition * duration;
+        }
+    }
+
+
 }
 
 export const videoNavigation = new VideoNavigation();
