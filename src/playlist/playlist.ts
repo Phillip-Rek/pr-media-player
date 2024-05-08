@@ -120,6 +120,18 @@ class PlayList {
             (<HTMLElement>playlistItem.children.item(0)).textContent = `${i + 1}. ${this.playList[i].title}`
         }
     }
+
+    remove(song: Track): void {
+        this.playList.forEach((_song, i) => {
+            if (song.url === _song.url) {
+                this.playList.splice(i, 1);
+            }
+
+            this.playList.forEach((song, i) => {
+                song.trackNumber = i;
+            })
+        })
+    }
 }
 
 export const playList = new PlayList();
