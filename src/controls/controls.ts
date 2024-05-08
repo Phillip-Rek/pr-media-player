@@ -77,6 +77,13 @@ class Controls {
             displayVolumeElement.style.display = "none";
         }
     }
+
+    private activatePlayButton() {
+        this.controlsContainer.appendChild(this.playButton);
+        this.playButton.onclick = (e) => {
+            videoScreen.togglePause(this.playButton);
+        }
+    }
 }
 
 export const controls = new Controls();
