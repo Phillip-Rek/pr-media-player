@@ -1,4 +1,6 @@
 import { bottomTitleSection } from "../bottomTitleSection/bottomTitleSection.js";
+import { controls } from "../controls/controls.js";
+import { loadingIndicator } from "../loadingIndicator/loadingIndicator.js";
 import { playList, Track } from "../playlist/playlist.js";
 import { createHTMLElement } from "../utils/utils.js";
 import { videoNavigation } from "../videoNavigation/videoNavigation.js";
@@ -8,6 +10,20 @@ class VideoScreen {
     private videoContainer = createHTMLElement("div", { id: "video-container" });
 
     constructor() {
+        this.initializeDropEvents();
+
+
+        this.videoElement.onplay = () => {
+            controls.playButton.className = "fa fa-pause";
+
+            document.title = playList.currentPlayingSong?.title + " - PR Media Player";
+
+            videoNavigation.attachVideoNavigationToVideo(this.videoElement.src);
+        }
+
+        this.videoElement.onpause = () => {
+            controls.playButton.className = "fa fa-play";
+        }
     }
 
     getVideoContainer() { return this.videoContainer }
