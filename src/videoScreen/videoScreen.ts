@@ -51,11 +51,14 @@ class VideoScreen {
         bottomTitleSection.updateTitle(playList.currentPlayingSong?.title);
         if (this.videoElement.paused) {
             this.videoElement.play()
-                .then(res => {
+                .then(() => {
                     playButton.className = "fa fa-pause";
                 })
-                .catch(err => {
-                    playButton.className = "fa fa-play";
+                .catch(() => {
+                    if (playList.currentPlayingSong)
+                        this.play(playList.currentPlayingSong);
+                    else
+                        throw new Error("No current playing song to play in the playlist")
                 })
         }
         else {
