@@ -175,8 +175,8 @@ class PlayList {
 
                     fileReader.onloadend = (e) => {
                         const url = URL.createObjectURL(new Blob([<ArrayBuffer>fileReader.result]));
-                        this.add({ title, url });
-
+                        const track = this.add({ title, url });
+                        this.currentPlayingSong = !this.currentPlayingSong && track || this.currentPlayingSong;
                         loadingIndicator.loadEnd();
                     }
 
