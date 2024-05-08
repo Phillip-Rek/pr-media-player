@@ -10,8 +10,16 @@ class VideoScreen {
     private videoContainer = createHTMLElement("div", { id: "video-container" });
 
     constructor() {
+        this.videoContainer.appendChild(this.videoElement);
         this.initializeDropEvents();
 
+        this.videoElement.onloadedmetadata = () => {
+            videoNavigation.setDuration(this.videoElement.duration);
+        }
+
+        this.videoElement.ontimeupdate = () => {
+            videoNavigation.updateCurrentTime(this.videoElement.currentTime);
+        }
 
         this.videoElement.onended = () => {
             controls.playButton.className = "fa fa-play";
