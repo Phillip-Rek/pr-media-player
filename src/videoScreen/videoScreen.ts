@@ -36,6 +36,51 @@ class VideoScreen {
 
         videoNavigation.setDuration(this.videoElement.duration);
     }
+
+    private initializeDropEvents() {
+
+        this.videoContainer.addEventListener("dragenter", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.videoContainer.addEventListener("dragleave", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.videoContainer.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.videoContainer.addEventListener("drop", (dropEvent) => {
+            dropEvent.preventDefault();
+            dropEvent.stopPropagation();
+
+            if (dropEvent.dataTransfer) {
+                for (const file of dropEvent.dataTransfer?.files) {
+                    const fileReader = new FileReader();
+                    const title = file.name;
+
+                    fileReader.onloadend = (e) => {
+                        const url = URL.createObjectURL(new Blob([<ArrayBuffer>fileReader.result]));
+                        this.videoElement.src = url;
+                        bottomTitleSection.updateTitle(title);
+
+                        playList.play(playList.add({ title, url }));
+                        // videoNavigation.setDuration(this.videoElement.duration);
+
+                        loadingIndicator.loadEnd();
+                    }
+
+                    fileReader.onloadstart = (e) => {
+                        loadingIndicator.loadStart()
+                    }
+
+                    fileReader.readAsArrayBuffer(file);
+                }
+            }
+        });
+
+    }
 }
 
 export const videoScreen = new VideoScreen();
