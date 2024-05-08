@@ -33,6 +33,43 @@ class VideoNavigation {
 
         this.elapsedTimeIndicator.style.width = elapsedTimePercentage;
     }
+
+
+    initMouseMoveEvent() {
+        this.videoNavigationElement.onmousemove = (e) => {
+            if (Number.isNaN(videoScreen.getVideoElement().duration)) return;
+
+            const { width, x } = this.videoNavigationElement.getBoundingClientRect();
+            const cursorPosition = (e.clientX - x) / width;
+            const duration = this.videoNavigationVideoElement.duration;
+
+            this.previewTimeElement.style.display = "block";
+            this.previewTimeElement.style.left = e.clientX + 10 + "px";
+            this.previewTimeElement.style.top = e.clientY + 10 + "px";
+            this.previewTimeElement.textContent = timeFromSecondsToMinutesSeconds(cursorPosition * duration)
+
+            this.videoNavigationVideoElement.currentTime = cursorPosition * duration;
+
+            const ctx = this.videoNavigationCanvas.getContext("2d");
+            ctx?.drawImage(this.videoNavigationVideoElement, 0, 0, this.videoNavigationCanvas.width, this.videoNavigationCanvas.height);
+            this.videoNavigationCanvas.style.display = "block";
+
+            if (e.clientX >= (window.innerWidth - 200))
+                this.videoNavigationCanvas.style.left = window.innerWidth - 200 - 10 + "px";
+            else
+                this.videoNavigationCanvas.style.left = e.clientX - 10 + "px";
+
+            this.videoNavigationCanvas.style.top = e.clientY - this.videoNavigationCanvas.height - 10 + "px";
+        }
+
+        this.videoNavigationElement.onmouseleave = () => {
+            this.previewTimeElement.style.display = "none";
+            this.videoNavigationCanvas.style.display = "none";
+        }
+
+        this.videoNavigationElement.onmouseenter = this.videoNavigationElement.onmousemove
+    }
+
 }
 
 export const videoNavigation = new VideoNavigation();
