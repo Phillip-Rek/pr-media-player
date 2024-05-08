@@ -111,6 +111,14 @@ class Controls {
             playList.next();
         }
     }
+
+    private activateRepeatButton() {
+        this.controlsContainer.appendChild(this.repeatButton);
+
+        this.repeatButton.onclick = () => {
+            playList.repeatOne();
+        }
+    }
 }
 
 export const controls = new Controls();
