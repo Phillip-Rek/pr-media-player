@@ -17,7 +17,17 @@ class Controls {
 
     volumeElement = <HTMLElement>createHTMLElement("div", { style: { fontSize: "12px", position: "relative", color: "grey", backgroundColor: "transparent", height: "fit-content", zIndex: "30", left: "25px", top: "-5px" } });
 
-    constructor() { }
+    constructor() {
+        this.activatePlayButton();
+        this.activatePrevButton();
+        this.activateStopButton();
+        this.activateNextButton();
+        this.activateMenuButton();
+        this.activateRepeatButton();
+        this.activateToggleMuteButton();
+        this.controlsContainer.appendChild(this.volumeElement);
+        this.activatevolumeControl();
+    }
 
     getContainer() { return this.controlsContainer }
 
