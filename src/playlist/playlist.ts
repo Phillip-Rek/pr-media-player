@@ -16,7 +16,6 @@ class PlayList {
 
     getPlaylistElement() { return this.playlistElement }
 
-
     play(song: Track) {
         this.currentPlayingSong = song;
         videoScreen.play(song);
@@ -31,6 +30,12 @@ class PlayList {
             }
         }
     }
+
+    stop() {
+        this.currentPlayingSong = undefined;
+        videoScreen.getVideoElement().src = "";
+    }
+
 }
 
 export const playList = new PlayList();
