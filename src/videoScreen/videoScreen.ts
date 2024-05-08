@@ -50,23 +50,15 @@ class VideoScreen {
     togglePause(playButton: HTMLElement) {
         bottomTitleSection.updateTitle(playList.currentPlayingSong?.title);
         if (this.videoElement.paused) {
-            this.videoElement.play()
-                .then(() => {
-                    playButton.className = "fa fa-pause";
-                })
-                .catch(() => {
-                    if (playList.currentPlayingSong)
-                        this.play(playList.currentPlayingSong);
-                    else
-                        throw new Error("No current playing song to play in the playlist")
-                })
+            if (!this.videoElement.src && playList.currentPlayingSong)
+                this.play(playList.currentPlayingSong);
+
+            this.videoElement.play().then(() => { playButton.className = "fa fa-pause" })
         }
         else {
             videoScreen.videoElement.pause();
             playButton.className = "fa fa-play";
         }
-
-        videoNavigation.setDuration(this.videoElement.duration);
     }
 
     private initializeDropEvents() {
