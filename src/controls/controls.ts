@@ -37,6 +37,32 @@ class Controls {
             }
         }
     }
+
+    private activatevolumeControl() {
+        this.controlsContainer.appendChild(this.volumeControl);
+        const volumeIndicator = createHTMLElement("div");
+        this.volumeControl.appendChild(volumeIndicator);
+
+        const displayVolumeElement = createHTMLElement("div", { style: { backgroundColor: "#000a", color: "#ffff", position: "absolute", display: "none", zIndex: "20" } });
+        document.body.appendChild(displayVolumeElement);
+
+        volumeIndicator.style.height = "100%";
+        volumeIndicator.style.background = "linear-gradient(to right, #dfdf, #7f7f, #2a2f, #2a2f)";
+        volumeIndicator.style.width = videoScreen.getVideoElement().volume * 100 + "%";
+
+        this.volumeElement.textContent = "100%";
+        this.volumeControl.onclick = (e) => {
+            const volumeControlX = this.volumeControl.getBoundingClientRect().x;
+            const volumeControlWidth = this.volumeControl.getBoundingClientRect().width;
+            const cursorPositionInVolumeControl = (e.clientX - volumeControlX) / volumeControlWidth;
+
+            videoScreen.getVideoElement().volume = cursorPositionInVolumeControl;
+
+            this.volumeElement.textContent = Math.ceil(cursorPositionInVolumeControl * 100) + "%";
+
+            volumeIndicator.style.width = Math.ceil(cursorPositionInVolumeControl * 100) + "%";
+        }
+    }
 }
 
 export const controls = new Controls();
