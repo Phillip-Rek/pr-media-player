@@ -13,6 +13,9 @@ class PlayList {
     currentPlayingSong?: Track = undefined;
     playList: Array<Track> = [];
 
+    constructor() {
+        this.initializeDropEvents()
+    }
 
     getPlaylistElement() { return this.playlistElement }
 
@@ -144,6 +147,43 @@ class PlayList {
             repeatButton.style.color = "black";
             repeatButton.style.background = "rgba(128, 128, 128, 0.897)";
         }
+    }
+
+    private initializeDropEvents() {
+        this.playlistElement.addEventListener("dragenter", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.playlistElement.addEventListener("dragleave", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.playlistElement.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+        this.playlistElement.addEventListener("drop", (dropEvent) => {
+            dropEvent.preventDefault();
+            dropEvent.stopPropagation();
+
+            if (dropEvent.dataTransfer) {
+                for (const file of dropEvent.dataTransfer?.files) {
+                    const fileReader = new FileReader();
+                    const title = file.name;
+
+                    fileReader.onloadend = (e) => {
+                        const url = URL.createObjectURL(new Blob([<ArrayBuffer>fileReader.result]));
+                        this.add({ title, url });
+
+                        loadingIndicator.loadEnd();
+                    }
+
+                    fileReader.onloadstart = () => { loadingIndicator.loadStart() }
+
+                    fileReader.readAsArrayBuffer(file);
+                }
+            }
+        });
     }
 }
 
