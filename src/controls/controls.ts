@@ -92,6 +92,17 @@ class Controls {
             playList.prev();
         }
     }
+
+    private activateStopButton() {
+        this.controlsContainer.appendChild(this.stopButton);
+
+        this.stopButton.onclick = () => {
+            videoNavigation.updateCurrentTime(0);
+            playList.stop();
+            this.playButton.className = "fa fa-play"
+        }
+
+    }
 }
 
 export const controls = new Controls();
