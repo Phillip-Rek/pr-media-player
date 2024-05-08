@@ -17,6 +17,26 @@ class Controls {
 
     volumeElement = <HTMLElement>createHTMLElement("div", { style: { fontSize: "12px", position: "relative", color: "grey", backgroundColor: "transparent", height: "fit-content", zIndex: "30", left: "25px", top: "-5px" } });
 
+    constructor() { }
+
+    getContainer() { return this.controlsContainer }
+
+    private activateToggleMuteButton() {
+        this.controlsContainer.appendChild(this.toggleMuteButton);
+
+        this.toggleMuteButton.onclick = () => {
+            if (videoScreen.getVideoElement().muted) {
+                videoScreen.getVideoElement().muted = false;
+                this.toggleMuteButton.className = "fa fa-volume-up";
+                this.toggleMuteButton.style.color = "grey";
+            }
+            else {
+                videoScreen.getVideoElement().muted = true;
+                this.toggleMuteButton.className = "fa fa-volume-off";
+                this.toggleMuteButton.style.color = "#f22f";
+            }
+        }
+    }
 }
 
 export const controls = new Controls();
