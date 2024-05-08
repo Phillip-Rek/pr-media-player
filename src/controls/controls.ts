@@ -103,6 +103,14 @@ class Controls {
         }
 
     }
+
+    private activateNextButton() {
+        this.controlsContainer.appendChild(this.nextButton);
+
+        this.nextButton.onclick = () => {
+            playList.next();
+        }
+    }
 }
 
 export const controls = new Controls();
