@@ -36,6 +36,39 @@ class PlayList {
         videoScreen.getVideoElement().src = "";
     }
 
+    prev(): void {
+        if (!this.currentPlayingSong) return;
+        let i = this.currentPlayingSong.trackNumber;
+        if (this.isRepeated) {
+            this.play(this.playList[i]);
+        }
+        else if (this.isFirst(i)) {
+            this.play(this.playList[this.playList.length - 1])
+        }
+        else {
+            this.play(this.playList[i - 1]);
+        }
+        // console.log(this.playList[i - 1].url)
+        videoScreen.getVideoElement().src = this.playList[i - 1].url;
+    }
+
+    next(): void {
+        if (!this.currentPlayingSong) return;
+
+        let i = this.currentPlayingSong.trackNumber;
+        if (this.isRepeated) {
+            this.play(this.playList[i]);
+        }
+        else if (this.isLast(i)) {
+            this.play(this.playList[0]);
+        }
+        else
+            this.play(this.playList[i + 1]);
+    }
+
+    isFirst = (i: number) => i === 0 ? true : false;
+    isLast = (i: number) => i === this.playList.length - 1 ? true : false;
+
 }
 
 export const playList = new PlayList();
