@@ -62,6 +62,20 @@ class Controls {
 
             volumeIndicator.style.width = Math.ceil(cursorPositionInVolumeControl * 100) + "%";
         }
+
+        this.volumeControl.onmousemove = (e) => {
+            displayVolumeElement.style.display = "block";
+            displayVolumeElement.style.left = e.clientX + "px";
+            displayVolumeElement.style.top = e.clientY - 20 + "px";
+            const volumeControlX = this.volumeControl.getBoundingClientRect().x;
+            const volumeControlWidth = this.volumeControl.getBoundingClientRect().width;
+            const cursorPositionInVolumeControl = (e.clientX - volumeControlX) / volumeControlWidth;
+            displayVolumeElement.textContent = Math.ceil(cursorPositionInVolumeControl * 100) + "%";
+        }
+
+        this.volumeControl.onmouseleave = () => {
+            displayVolumeElement.style.display = "none";
+        }
     }
 }
 
