@@ -85,6 +85,34 @@ class PlayList {
 
         return track;
     }
+
+    addPlaylistItemToDOM(track: Track, background?: string) {
+        const trackElement = createHTMLElement("div", { className: "playlist-item", id: track.title });
+        const trackTitleElement = createHTMLElement("span", { className: "track-title" });
+        trackTitleElement.textContent = (this.playList.length) + ". " + track.title;
+
+        const textCutIndicator = createHTMLElement("span", { style: { width: "30px", height: "100%", background: "linear-gradient(to right, rgba(68, 68, 68, 0.2), rgba(68, 68, 68, 0.8))", position: "relative", left: "-30px" } })
+
+        const trackDeleteBtn = createHTMLElement("span", { className: "playlist-delete-item" });
+        trackDeleteBtn.textContent = "x";
+        trackElement.appendChild(trackTitleElement);
+        trackElement.appendChild(textCutIndicator);
+        trackElement.appendChild(trackDeleteBtn);
+
+        if (background) trackElement.style.backgroundColor = background;
+
+        this.playlistElement.appendChild(trackElement);
+
+        trackElement.ondblclick = () => { this.play(track); }
+        trackDeleteBtn.onclick = () => {
+            for (let i = 0; i < this.playList.length; i++) {
+                const trackInPlaylist = this.playList[i];
+                if (trackInPlaylist === track) { this.playList.splice(i, 1); }
+            }
+            trackElement.remove();
+            this.updateTrackNumberInTheDOM();
+        }
+    }
 }
 
 export const playList = new PlayList();
