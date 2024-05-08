@@ -132,6 +132,19 @@ class PlayList {
             })
         })
     }
+
+    repeatOne() {
+        const repeatButton = controls.repeatButton;
+        if (this.isRepeated) {
+            this.isRepeated = false;
+            repeatButton.style.color = "rgba(128, 128, 128, 0.897)";
+            repeatButton.style.background = "linear-gradient(to bottom, rgb(98, 98, 98), rgb(27, 27, 27), rgba(0, 0, 0, 0.568))"
+        } else {
+            this.isRepeated = true;
+            repeatButton.style.color = "black";
+            repeatButton.style.background = "rgba(128, 128, 128, 0.897)";
+        }
+    }
 }
 
 export const playList = new PlayList();
