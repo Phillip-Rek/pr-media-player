@@ -119,6 +119,33 @@ class Controls {
             playList.repeatOne();
         }
     }
+
+    private activateMenuButton() {
+        this.controlsContainer.appendChild(this.menuButton);
+
+        this.menuButton.onclick = () => {
+            if (playList.getPlaylistElement().style.display !== "none") {
+                playList.getPlaylistElement().style.display = "none";
+
+                videoScreen.getVideoContainer().style.justifyContent = "center";
+                videoScreen.getVideoContainer().style.flex = "1";
+                videoScreen.getVideoContainer().style.width = "";
+
+                videoScreen.getVideoElement().style.width = "100%";
+                videoScreen.getVideoElement().style.height = "100%";
+
+            }
+            else {
+                playList.getPlaylistElement().style.display = "flex";
+
+                videoScreen.getVideoContainer().style.justifyContent = "flex-end";
+                videoScreen.getVideoElement().style.height = "";
+                videoScreen.getVideoContainer().style.width = "250px";
+                videoScreen.getVideoContainer().style.flex = "";
+            }
+        }
+    }
+
 }
 
 export const controls = new Controls();
