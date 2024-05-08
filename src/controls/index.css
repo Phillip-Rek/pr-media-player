@@ -1,0 +1,44 @@
+#controls-container {
+    width: calc(100% - 12px);
+    /* height: 25px; */
+    background-color: rgb(53, 53, 53);
+    border: 1px solid black;
+    padding: 8px 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#controls-container>button {
+    font-size: 12px;
+    text-align: center;
+    margin: 1px;
+    padding: 6px;
+    border: 1px solid rgb(37, 37, 37);
+    border-radius: 3px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, rgb(94, 94, 94), rgba(0, 0, 0, 1));
+    color: rgba(128, 128, 128, 0.897);
+}
+
+#controls-container>button:hover {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgb(94, 94, 94));
+}
+
+#controls-container>*:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    #controls-container>button {
+        font-size: 22px;
+    }
+}
+
+#volume-control {
+    background-color: rgb(94, 94, 94);
+    width: 60px;
+    height: 80%;
+    clip-path: polygon(0% 100%, 100% 0%, 100% 100%);
+    /* margin: 0px 40px; */
+}
