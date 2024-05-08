@@ -1,3 +1,5 @@
+import { controls } from "../controls/controls.js";
+import { loadingIndicator } from "../loadingIndicator/loadingIndicator.js";
 import { createHTMLElement } from "../utils/utils.js";
 import { videoScreen } from "../videoScreen/videoScreen.js";
 
