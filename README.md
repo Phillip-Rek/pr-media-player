@@ -4,7 +4,7 @@
 - Currently, there's only a dark theme version
 
 ## Try It Online
-[PR Media Player]([https://opensource.org/licenses/MIT](https://phillip-rek.github.io/))
+[PR Media Player](https://phillip-rek.github.io/)
 
 ![Screenshot at 2024-05-10 13-09-40](https://github.com/Phillip-Rek/pr-media-player/assets/66903878/190127de-f77d-45fc-a4c1-b46286da16dd)
 
