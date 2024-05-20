@@ -7,12 +7,18 @@
     "pr-media-player": "bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "media",
     "player"
   ],
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.2.11"
+  },
   "author": "Phillip Rekhotho",
   "license": "MIT"
 }
