@@ -7,7 +7,7 @@ import { videoNavigation } from "./videoNavigation/videoNavigation.js";
 import { videoScreen } from "./videoScreen/videoScreen.js";
 import "font-awesome/css/font-awesome.min.css";
 
-const videoAndPlsylistContainer = createHTMLElement("div", {
+const topPanelComponent = createHTMLElement("div", {
     style: {
         display: "flex",
         flexDirection: "row",
@@ -17,8 +17,8 @@ const videoAndPlsylistContainer = createHTMLElement("div", {
         height: "auto"
     }
 });
-videoAndPlsylistContainer.appendChild(videoScreen.getVideoContainer());
-videoAndPlsylistContainer.appendChild(playList.getPlaylistElement());
+topPanelComponent.appendChild(videoScreen.getVideoContainer());
+topPanelComponent.appendChild(playList.getPlaylistElement());
 
 // video player element
 const style: Partial<CSSStyleDeclaration> = {
@@ -33,7 +33,7 @@ const style: Partial<CSSStyleDeclaration> = {
 }
 const videoPlayerElement = <HTMLDivElement>createHTMLElement("div", { id: "video-player", style, });
 
-videoPlayerElement.appendChild(videoAndPlsylistContainer);
+videoPlayerElement.appendChild(topPanelComponent);
 videoPlayerElement.appendChild(videoNavigation.getContainer());
 videoPlayerElement.appendChild(controls.getContainer());
 videoPlayerElement.appendChild(bottomTitleSection.getContainer());
