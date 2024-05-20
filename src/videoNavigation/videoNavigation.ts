@@ -1,5 +1,6 @@
 import { createHTMLElement, timeFromSecondsToMinutesSeconds } from "../utils/utils.js";
 import { videoScreen } from "../videoScreen/videoScreen.js";
+import "./index.css";
 
 class VideoNavigation {
     private videoNavigationContainer = createHTMLElement("div", { id: "video-navigation-container" })

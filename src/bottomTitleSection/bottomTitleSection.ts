@@ -1,4 +1,5 @@
 import { createHTMLElement } from "../utils/utils.js";
+import "./index.css";
 
 class BottomTitleSection {
     private bottomTitleContainer = createHTMLElement("div", { id: "bottom-title-section" })

@@ -1,4 +1,5 @@
 import { createHTMLElement } from "../utils/utils.js";
+import "./index.css";
 
 class LoadingIndicator {
     private container = createHTMLElement("div", { id: "loading-indicator" });

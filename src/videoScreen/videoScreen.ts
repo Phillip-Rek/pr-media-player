@@ -4,6 +4,7 @@ import { loadingIndicator } from "../loadingIndicator/loadingIndicator.js";
 import { playList, Track } from "../playlist/playlist.js";
 import { createHTMLElement } from "../utils/utils.js";
 import { videoNavigation } from "../videoNavigation/videoNavigation.js";
+import "./index.css";
 
 class VideoScreen {
     private videoElement = <HTMLVideoElement>createHTMLElement("video", { id: "video", attributes: { autoplay: "true" } });
