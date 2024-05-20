@@ -41,10 +41,10 @@ document.body.appendChild(videoPlayerElement);
 document.body.appendChild(loadingIndicator.getContainer());
 
 // keyboard events [shortcuts]
-// window.onkeyup = (e) => {
-//     console.log(e.code)
-//     switch (e.code) {
-//         case "Space": videoScreen.togglePause(controls.playButton); break;
-//         default: break;
-//     }
-// }
+window.onkeyup = (e) => {
+    console.log(e.code)
+    switch (e.code) {
+        case "Space": videoScreen.togglePause(controls.playButton); break;
+        default: break;
+    }
+}
