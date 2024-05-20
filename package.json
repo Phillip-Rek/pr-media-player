@@ -1,0 +1,18 @@
+{
+  "name": "pr-media-player",
+  "version": "1.0.0",
+  "description": "App for playing videos and audios",
+  "main": "index.js",
+  "bin": {
+    "pr-media-player": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "media",
+    "player"
+  ],
+  "author": "Phillip Rekhotho",
+  "license": "MIT"
+}
