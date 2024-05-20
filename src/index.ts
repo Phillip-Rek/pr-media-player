@@ -5,7 +5,7 @@ import { playList } from "./playlist/playlist.js";
 import { createHTMLElement } from "./utils/utils.js";
 import { videoNavigation } from "./videoNavigation/videoNavigation.js";
 import { videoScreen } from "./videoScreen/videoScreen.js";
-
+import "font-awesome/css/font-awesome.min.css";
 
 const videoAndPlsylistContainer = createHTMLElement("div", {
     style: {
